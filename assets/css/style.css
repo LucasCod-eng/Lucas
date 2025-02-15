@@ -150,9 +150,25 @@ nav{
 
 
 /* ----- WRAPPER DESIGN ----- */
-.wrapper{
-    padding-inline: 10vw;
+.wrapper {
+    padding-inline: clamp(10px, 10vw, 80px); /* Mantém um equilíbrio entre telas pequenas e grandes */
+    max-width: 1200px; /* Evita que o conteúdo fique muito largo */
+    margin: 0 auto; /* Centraliza a wrapper */
 }
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .wrapper {
+        padding-inline: 5vw; /* Reduz o padding lateral em telas menores */
+    }
+}
+
+@media (max-width: 480px) {
+    .wrapper {
+        padding-inline: 3vw; /* Ajuste para celulares */
+    }
+}
+
 
 /* ----- FEATURED BOX ----- */
 .featured-box{
@@ -188,7 +204,7 @@ nav{
 }
 .typedText{
     text-transform: capitalize;
-    color: var(--text-color-third);
+    color: #00c9ff ;
 }
 .featured-text-info{
     font-size: 15px;
@@ -215,14 +231,32 @@ nav{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 40px;
-    height: 40px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
-    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 2px 5px 0px #00c9ff;
     cursor: pointer;
+    color: #00c9ff; /* Cor inicial do ícone */
+    transition: color 0.3s ease; /* Suaviza a transição da cor */
 }
 .icon:hover{
     color: var(--first-color);
+}
+
+.icon-1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    box-shadow: 0px 2px 5px 0px #ffffff;
+    cursor: pointer;
+    color: #ffffff; /* Cor inicial do ícone */
+    transition: color 0.3s ease; /* Suaviza a transição da cor */
+}
+.icon-1:hover{
+    color: #00c9ff;
 }
 
 /* ----- FEATURED IMAGE BOX ----- */
@@ -361,26 +395,47 @@ h3{
 }
 
 /* ----- PROJECTS BOX ----- */
-.project-container{
+.project-container {
     display: flex;
-    width: 100%;
-    justify-content: space-between;
-    gap: 20px;
     flex-wrap: wrap;
+    justify-content: center; /* Centraliza os itens em telas menores */
+    gap: 20px;
 }
-.project-box{
+
+.project-box {
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     width: 30%;
+    min-width: 280px; /* Evita que os elementos fiquem muito pequenos */
+    max-width: 350px; /* Limita o tamanho máximo para melhor organização */
     height: 400px;
     background: var(--color-white);
     border-radius: 20px;
     box-shadow: 1px 8px 10px 2px var(--first-shadow-color);
     overflow: hidden;
 }
+
+/* Responsividade */
+@media (max-width: 1024px) {
+    .project-container {
+        justify-content: space-around; /* Melhor espaçamento em telas médias */
+    }
+    
+    .project-box {
+        width: 45%; /* Ajusta para duas colunas */
+    }
+}
+
+@media (max-width: 768px) {
+    .project-box {
+        width: 100%; /* Ocupa toda a largura em telas menores */
+        max-width: 100%; 
+    }
+}
+
 
 .lb{
         text-align: center; /* Centralizar o conteúdo */
@@ -420,7 +475,7 @@ h3{
 }
 
 /* ----- CONTACT BOX ----- */
-.contact-info{
+.contact-info {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -428,26 +483,58 @@ h3{
     align-items: center;
     padding: 20px 30px;
     width: 100%;
-    height: 315px;
+    max-width: 600px; /* Evita que fique muito largo em telas grandes */
+    height: auto;
+    min-height: 250px; /* Reduz a altura mínima para melhor adaptação */
     background: var(--second-color);
     border-radius: 10px;
     box-shadow: 1px 8px 10px 2px var(--first-shadow-color);
     overflow: hidden;
+    text-align: center;
 }
-.contact-info>h2{
+
+/* Títulos e textos */
+.contact-info > h2 {
     color: var(--color-white);
-    margin-bottom: 20px;
+    margin-bottom: 15px;
+    font-size: 1.8rem; /* Ajusta o tamanho do título */
 }
-.contact-info>p{
+
+.contact-info > p {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 10px;
     color: var(--color-white);
     margin-block: 5px;
+    font-size: 1rem; /* Ajusta a fonte para melhor leitura */
 }
-.contact-info p>i{
+
+.contact-info p > i {
     font-size: 18px;
 }
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .contact-info {
+        padding: 15px 20px;
+        width: 90%; /* Ocupa mais espaço na tela */
+        min-height: 200px; /* Reduz altura mínima */
+    }
+
+    .contact-info > h2 {
+        font-size: 1.5rem; /* Reduz tamanho do título */
+    }
+
+    .contact-info > p {
+        font-size: 0.9rem; /* Reduz tamanho do texto */
+    }
+
+    .contact-info p > i {
+        font-size: 16px;
+    }
+}
+
 .contact-info::after{
     background: var(--color-white);
 }
@@ -512,7 +599,7 @@ footer{
     align-items: center;
     flex-direction: column;
     row-gap: 30px;
-    background: #00c9ff;
+    background: #000000;
     padding-block: 40px 60px;
 }
 .top-footer p{
@@ -635,7 +722,25 @@ footer{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    gap: 20px; /* Adiciona um espaço entre os itens */
 }
+
+.skills-container > div {
+    flex: 1 1 30%; /* Os itens vão ocupar no mínimo 30% do container */
+}
+
+@media (max-width: 768px) {
+    .skills-container > div {
+        flex: 1 1 45%; /* Em telas menores, os itens vão ocupar no mínimo 45% */
+    }
+}
+
+@media (max-width: 480px) {
+    .skills-container > div {
+        flex: 1 1 100%; /* Em telas muito pequenas, os itens ocupam 100% */
+    }
+}
+
 
 .col-md-4 {
     width: 23%;
